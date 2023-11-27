@@ -38,7 +38,7 @@ public class HistoryHandlerImpl implements HistoryHandler {
         final History history = new History();
         history.setAuthorId( HistoryConfigurer.get().getHistoryDataProvider().getAuthorId().orElse( 0 ) );
         history.setAuthorType( HistoryConfigurer.get().getHistoryDataProvider().getAuthorName().orElse( "Unknow" ) );
-        history.setSubjectType( object.getClass().getName() );
+        history.setSubjectType( object.getClass().getName().split( "\\$" )[ 0 ] );
         history.setLogType( History.TYPE_CREATE );
         history.setIpAddress( HistoryConfigurer.get().getHistoryDataProvider().getAuthorIp().orElse( null ) );
         history.setUri( request.getUri() );
@@ -59,7 +59,7 @@ public class HistoryHandlerImpl implements HistoryHandler {
         final History history = new History();
         history.setAuthorId( HistoryConfigurer.get().getHistoryDataProvider().getAuthorId().orElse( 0 ) );
         history.setAuthorType( HistoryConfigurer.get().getHistoryDataProvider().getAuthorName().orElse( "Unknow" ) );
-        history.setSubjectType( object.getClass().getName() );
+        history.setSubjectType( object.getClass().getName().split( "\\$" )[ 0 ] );
         history.setSubjectProperty( property );
         history.setNewValue( this.getFieldValue( object, property ) );
         history.setLogType( History.TYPE_UPDATE );
@@ -82,7 +82,7 @@ public class HistoryHandlerImpl implements HistoryHandler {
         history.setAuthorId( HistoryConfigurer.get().getHistoryDataProvider().getAuthorId().orElse( 0 ) );
         history.setAuthorType( HistoryConfigurer.get().getHistoryDataProvider().getAuthorName().orElse( "Unknow" ) );
         history.setSubjectId( Integer.valueOf( this.getFieldValue( object, "id" ) ) );
-        history.setSubjectType( object.getClass().getName() );
+        history.setSubjectType( object.getClass().getName().split( "\\$" )[ 0 ] );
         history.setLogType( History.TYPE_DELETE );
         history.setIpAddress( HistoryConfigurer.get().getHistoryDataProvider().getAuthorIp().orElse( null ) );
         history.setUri( request.getUri() );
