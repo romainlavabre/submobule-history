@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,4 +25,8 @@ public interface HistoryJpa extends JpaRepository< History, Long > {
 
 
     List< History > findAllBySubjectTypeAndSubjectId( String subjectType, int subjectId );
+
+
+    @Query( value = "SELECT * FROM history WHERE DATE(created_at) < ?1 ORDER BY id ASC LIMIT ?2", nativeQuery = true )
+    List< History > findAllByCreatedAtBeforeByDescLimit( ZonedDateTime before, int limit );
 }

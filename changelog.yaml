@@ -1,3 +1,4 @@
+4.2.0: Add HistoryJpa.findAllByCreatedAtBeforeByDescLimit method
 4.1.0: Add HistoryJpa.findAllByEntityAndIdAndPropertyLimit method
 4.0.1: FIX Hibernate proxy case
 4.0.0: fairfair-cloud/roadmap#16
